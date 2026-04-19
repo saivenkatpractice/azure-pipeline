@@ -10,11 +10,19 @@ pool:
   name: 'Azure Pipelines'
   vmImage: ubuntu-latest
 
-steps:
-- script: echo Hello, world, Changed!
-  displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+jobs:
+- job: job1
+  steps:
+  - script: Job1 - Hello, world, Changed!
+    displayName: 'Run a one-line script'
+
+  - script: |
+      echo Add other tasks to build, test, and deploy your project.
+      echo See https://aka.ms/yaml
+    displayName: 'Run a multi-line script'  
+- job: job2
+  steps:
+  - script: Job2 - Hello, world, Changed!
+    displayName: 'Run a one-line script'
+
