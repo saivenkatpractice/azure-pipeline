@@ -25,13 +25,13 @@ stages:
       steps:
       - bash: echo Firstjob from TestDeploy pipeline
 - stage: QADeploy
-  dependson: Build
+  dependsOn: Build
   jobs:
     - job: FirstJob
       steps:
       - bash: echo Firstjob from QADeploy pipeline
 - stage: ProdDeploy
-  dependson:
+  dependsOn:
   - TestDeploy
   - QADeploy
   jobs:
@@ -41,12 +41,3 @@ stages:
   
   
 
-
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
