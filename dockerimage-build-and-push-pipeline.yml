@@ -23,7 +23,7 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'docker-hub-connection'
-        repository: 'dockerimage-build-and-push-pipeline'
+        repository: 'docker.io/saivenkatpractice/dockerimage-build-and-push-pipeline'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
       
