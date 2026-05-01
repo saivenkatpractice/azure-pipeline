@@ -12,18 +12,32 @@ pool:
 
 
 jobs:
-- job: job1
-  steps:
-  - script: echo Job1 - Hello, world, Changed!
-    displayName: 'Run a one-line script'
+  - deployment: QADeployJob
+    environment: QA
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+            - script: echo deploy to QA
+  - deployment: DevDeployJob
+    environment: Dev
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+            - script: echo deploy to Dev
+# - job: job1
+#   steps:
+#   - script: echo Job1 - Hello, world, Changed!
+#     displayName: 'Run a one-line script'
 
-  - script: |
-      echo Add other tasks to build, test, and deploy your project.
-      echo See https://aka.ms/yaml
-    displayName: 'Run a multi-line script'  
-- job: job2
-  dependsOn: job1
-  steps:
-  - script: echo Job2 - Hello, world, Changed!
-    displayName: 'Run a one-line script'
+#   - script: |
+#       echo Add other tasks to build, test, and deploy your project.
+#       echo See https://aka.ms/yaml
+#     displayName: 'Run a multi-line script'  
+# - job: job2
+#   dependsOn: job1
+#   steps:
+#   - script: echo Job2 - Hello, world, Changed!
+#     displayName: 'Run a one-line script'
 
