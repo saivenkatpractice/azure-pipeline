@@ -16,7 +16,19 @@ stages:
     steps:
     - bash: echo Firstjob from Build pipeline
     - bash: echo $(System.DefaultworkingDirectory)
-    - bash: echo $(Build.ArtifactStagingDirectory)
+    - bash: echo 
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: '$(System.DefaultworkingDirectory)'
+        Contents: |
+          **/*.yml
+          **/*.tf
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
 #   - job: SecondJob
 #     steps:
 #     - bash: echo SecondJob from Build pipeline
